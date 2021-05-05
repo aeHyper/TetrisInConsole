@@ -62,7 +62,7 @@ void clearlines() {
 				counter++;
 			}
 		}
-	
+
 		if (counter == 10) {
 			for (int k = 0; k <= 9; k++)
 			{
@@ -80,11 +80,62 @@ void clearlines() {
 			}
 			score += 40;
 		}
+		else if (counter == 20) {
+			for (int k = 0; k <= 9; k++)
+			{
+				bgGrid[row][k] = '#';
+			}
+			Sleep(100);
+			drawScreen();
+			for (int l = row; l >= 0; l--) {
+				for (int m = 0; m <= 9; m++) {
+					if (bgGrid[l][m] == char(254)) {
+						bgGrid[l][m] = '#';
+						bgGrid[l + 1][m] = char(254);
+					}
+				}
+			}
+			score += 100;
+		}
+		else if (counter == 30) {
+			for (int k = 0; k <= 9; k++)
+			{
+				bgGrid[row][k] = '#';
+			}
+			Sleep(100);
+			drawScreen();
+			for (int l = row; l >= 0; l--) {
+				for (int m = 0; m <= 9; m++) {
+					if (bgGrid[l][m] == char(254)) {
+						bgGrid[l][m] = '#';
+						bgGrid[l + 1][m] = char(254);
+					}
+				}
+			}
+			score += 300;
+		}
+		else if (counter == 40) {
+			for (int k = 0; k <= 9; k++)
+			{
+				bgGrid[row][k] = '#';
+			}
+			Sleep(100);
+			drawScreen();
+			for (int l = row; l >= 0; l--) {
+				for (int m = 0; m <= 9; m++) {
+					if (bgGrid[l][m] == char(254)) {
+						bgGrid[l][m] = '#';
+						bgGrid[l + 1][m] = char(254);
+					}
+				}
+			}
+			score += 1200;
+		}
 	}
 }
 
 void randPiece() {
-
+	rotation = 0;
 	randpiece = (rand() % 6) + 1;
 	//start piece upon random choice
 	switch (randpiece) {
@@ -225,14 +276,14 @@ int GAMEPLAY() {
 		piece = true;
 		drawScreen();
 		cin >> uInput;
-		
+
 		switch (rotation) {
 		case 0: { //BASE PIECES
 			if (uInput == 'q') {
 				switch (randpiece) {
 				case 1: //TeeWee
 				{
-					if (pos2x <= 18 && bgGrid[pos2x + 1][pos2y] == '#') {
+					if (pos2x <= 18 && bgGrid[pos3x + 1][pos3y] == '#') {
 						bgGrid[pos4x][pos4y] = '#';
 						pos4x++;
 						pos4y--;
@@ -244,7 +295,7 @@ int GAMEPLAY() {
 				{
 					if (pos2x <= 18 && bgGrid[pos2x - 1][pos2y] == '#' && bgGrid[pos3x + 1][pos3y] == '#' && bgGrid[pos3x - 1][pos3y] == '#') {
 						bgGrid[pos1x][pos1y] = '#';
-						pos1y-=2;
+						pos1y -= 2;
 						bgGrid[pos2x][pos2y] = '#';
 						pos2x--;
 						pos2y++;
@@ -274,7 +325,7 @@ int GAMEPLAY() {
 				}
 				case 4: //Hero
 				{
-					if (pos2x<=17 && bgGrid[pos2x-1][pos2y] == '#' && bgGrid[pos2x + 1][pos2y] == '#' && bgGrid[pos2x - 2][pos2y] == '#') {
+					if (pos2x <= 17 && bgGrid[pos2x - 1][pos2y] == '#' && bgGrid[pos2x + 1][pos2y] == '#' && bgGrid[pos2x - 2][pos2y] == '#') {
 						bgGrid[pos1x][pos1y] = '#';
 						pos1x--;
 						pos1y++;
@@ -290,7 +341,7 @@ int GAMEPLAY() {
 				}
 				case 5: //Cleveland Z
 				{
-					if (pos3x<=19 && bgGrid[pos1x-1][pos1y]=='#') {
+					if (pos3x <= 19 && bgGrid[pos1x - 1][pos1y] == '#') {
 						pos1x--;
 						pos2y--;
 						pos3x--;
@@ -302,12 +353,12 @@ int GAMEPLAY() {
 				}
 				case 6: //Rhode Island Z
 				{
-					if (pos3x<=19 && bgGrid[pos2x - 1][pos2y] == '#') {
+					if (pos3x <= 19 && bgGrid[pos2x - 1][pos2y] == '#') {
 						pos1x--;
 						pos1y++;
 						bgGrid[pos3x][pos3y] = '#';
 						pos3x--;
-						pos3y+=2;
+						pos3y += 2;
 						rotation = 1;
 					}
 					break;
@@ -355,7 +406,7 @@ int GAMEPLAY() {
 				{
 					if (pos2x <= 18 && bgGrid[pos3x - 1][pos3y] == '#' && bgGrid[pos3x + 1][pos3y] == '#' && bgGrid[pos4x - 1][pos4y] == '#') {
 						bgGrid[pos1x][pos1y] = '#';
-						pos1y+=2;
+						pos1y += 2;
 						bgGrid[pos2x][pos2y] = '#';
 						pos2x--;
 						pos2y++;
@@ -403,8 +454,8 @@ int GAMEPLAY() {
 					if (pos3x <= 19 && bgGrid[pos3x - 2][pos3y] == '#' && bgGrid[pos3x - 1][pos3y] == '#') {
 						pos1x--;
 						bgGrid[pos2x][pos2y] = '#';
-						pos1y-=2;
-						pos2y-=2;
+						pos1y -= 2;
+						pos2y -= 2;
 						bgGrid[pos3x][pos3y] = '#';
 						pos3x--;
 						pos3y++;
@@ -632,7 +683,7 @@ int GAMEPLAY() {
 				}
 
 			}
-			
+
 			else if (uInput == 'a') {
 
 				switch (randpiece) {
@@ -923,9 +974,9 @@ int GAMEPLAY() {
 			{
 				isgaming = false;
 			}
-
+			break;
 		}
-		case 1:
+		case 1: //BASE PIECES ROTATED LEFT
 		{
 			if (uInput == 'q') {
 				switch (randpiece) {
@@ -1115,7 +1166,7 @@ int GAMEPLAY() {
 				}
 				case 4: //Hero 1 2 3 4
 				{
-					if (bgGrid[pos1x + 1][pos1y] == '#' && bgGrid[pos2x + 1][pos2y] == '#' && bgGrid[pos3x + 1][pos3y] == '#' && bgGrid[pos4x + 1][pos4y] == '#') {
+					if (bgGrid[pos4x + 1][pos4y] == '#') {
 						bgGrid[pos1x][pos1y] = '#';
 						pos1x++;
 						bgGrid[pos2x][pos2y] = '#';
@@ -1124,21 +1175,6 @@ int GAMEPLAY() {
 						pos3x++;
 						bgGrid[pos4x][pos4y] = '#';
 						pos4x++;
-						break;
-					}
-					else if (bgGrid[pos1x + 1][pos1y] == char(254)) {
-						clearlines();
-						randPiece();
-						break;
-					}
-					else if (bgGrid[pos2x + 1][pos2y] == char(254)) {
-						clearlines();
-						randPiece();
-						break;
-					}
-					else if (bgGrid[pos3x + 1][pos3y] == char(254)) {
-						clearlines();
-						randPiece();
 						break;
 					}
 					else if (bgGrid[pos4x + 1][pos4y] == char(254)) {
@@ -1528,7 +1564,7 @@ int GAMEPLAY() {
 
 
 		}
-		
+
 	}
 	return score;
 }
