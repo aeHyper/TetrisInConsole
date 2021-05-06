@@ -54,6 +54,7 @@ void drawScreen() {
 }
 
 void clearlines() {
+	
 	for (int i = 19; i >= 0; i--) {
 		counter = 0;
 		for (int j = 9; j >= 0; j--) {
@@ -67,8 +68,9 @@ void clearlines() {
 			for (int k = 0; k <= 9; k++)
 			{
 				bgGrid[row][k] = '#';
+				counter++;
 			}
-			Sleep(100);
+			Sleep(200);
 			drawScreen();
 			for (int l = row; l >= 0; l--) {
 				for (int m = 0; m <= 9; m++) {
@@ -78,65 +80,129 @@ void clearlines() {
 					}
 				}
 			}
-			score += 40;
 		}
-		else if (counter == 20) {
-			for (int k = 0; k <= 9; k++)
-			{
-				bgGrid[row][k] = '#';
-			}
-			Sleep(100);
-			drawScreen();
-			for (int l = row; l >= 0; l--) {
-				for (int m = 0; m <= 9; m++) {
-					if (bgGrid[l][m] == char(254)) {
-						bgGrid[l][m] = '#';
-						bgGrid[l + 1][m] = char(254);
+		if (counter == 20) {
+			for (int i = 19; i >= 0; i--) {
+				for (int j = 9; j >= 0; j--) {
+					if (bgGrid[i][j] == char(254)) {
+						row = i;
+						counter++;
 					}
 				}
-			}
-			score += 100;
-		}
-		else if (counter == 30) {
-			for (int k = 0; k <= 9; k++)
-			{
-				bgGrid[row][k] = '#';
-			}
-			Sleep(100);
-			drawScreen();
-			for (int l = row; l >= 0; l--) {
-				for (int m = 0; m <= 9; m++) {
-					if (bgGrid[l][m] == char(254)) {
-						bgGrid[l][m] = '#';
-						bgGrid[l + 1][m] = char(254);
+
+				if (counter == 10) {
+					for (int k = 0; k <= 9; k++)
+					{
+						bgGrid[row][k] = '#';
+						counter++;
+					}
+					Sleep(200);
+					drawScreen();
+					for (int l = row; l >= 0; l--) {
+						for (int m = 0; m <= 9; m++) {
+							if (bgGrid[l][m] == char(254)) {
+								bgGrid[l][m] = '#';
+								bgGrid[l + 1][m] = char(254);
+							}
+						}
 					}
 				}
+				score += 40;
 			}
-			score += 300;
 		}
 		else if (counter == 40) {
-			for (int k = 0; k <= 9; k++)
-			{
-				bgGrid[row][k] = '#';
-			}
-			Sleep(100);
-			drawScreen();
-			for (int l = row; l >= 0; l--) {
-				for (int m = 0; m <= 9; m++) {
-					if (bgGrid[l][m] == char(254)) {
-						bgGrid[l][m] = '#';
-						bgGrid[l + 1][m] = char(254);
+			for (int i = 19; i >= 0; i--) {
+				for (int j = 9; j >= 0; j--) {
+					if (bgGrid[i][j] == char(254)) {
+						row = i;
+						counter++;
 					}
 				}
+
+				if (counter == 10) {
+					for (int k = 0; k <= 9; k++)
+					{
+						bgGrid[row][k] = '#';
+						counter++;
+					}
+					Sleep(200);
+					drawScreen();
+					for (int l = row; l >= 0; l--) {
+						for (int m = 0; m <= 9; m++) {
+							if (bgGrid[l][m] == char(254)) {
+								bgGrid[l][m] = '#';
+								bgGrid[l + 1][m] = char(254);
+							}
+						}
+					}
+				}
+				score += 80;
 			}
-			score += 1200;
+		}
+		else if (counter == 60) {
+			for (int i = 19; i >= 0; i--) {
+				for (int j = 9; j >= 0; j--) {
+					if (bgGrid[i][j] == char(254)) {
+						row = i;
+						counter++;
+					}
+				}
+
+				if (counter == 10) {
+					for (int k = 0; k <= 9; k++)
+					{
+						bgGrid[row][k] = '#';
+						counter++;
+					}
+					Sleep(200);
+					drawScreen();
+					for (int l = row; l >= 0; l--) {
+						for (int m = 0; m <= 9; m++) {
+							if (bgGrid[l][m] == char(254)) {
+								bgGrid[l][m] = '#';
+								bgGrid[l + 1][m] = char(254);
+							}
+						}
+					}
+				}
+				score += 180;
+			}
+		}
+		else if (counter == 80) {
+			for (int i = 19; i >= 0; i--) {
+				for (int j = 9; j >= 0; j--) {
+					if (bgGrid[i][j] == char(254)) {
+						row = i;
+						counter++;
+					}
+				}
+
+				if (counter == 10) {
+					for (int k = 0; k <= 9; k++)
+					{
+						bgGrid[row][k] = '#';
+						counter++;
+					}
+					Sleep(200);
+					drawScreen();
+					for (int l = row; l >= 0; l--) {
+						for (int m = 0; m <= 9; m++) {
+							if (bgGrid[l][m] == char(254)) {
+								bgGrid[l][m] = '#';
+								bgGrid[l + 1][m] = char(254);
+							}
+						}
+					}
+				}
+				score += 900;
+			}
 		}
 	}
 }
 
 void randPiece() {
 	rotation = 0;
-	randpiece = (rand() % 6) + 1;
+	randpiece = 4;//(rand() % 6) + 1;
 	//start piece upon random choice
 	switch (randpiece) {
 	case 1:
@@ -376,8 +442,8 @@ int GAMEPLAY() {
 				case 1: //TeeWee
 				{
 					if (pos2x <= 18 && bgGrid[pos2x + 1][pos2y] == '#') {
-						pos1x--;
-						pos1y++;
+						pos1x++;
+						pos1y--;
 						bgGrid[pos2x][pos2y] = '#';
 						pos2y++;
 						pos3y++;
@@ -976,53 +1042,49 @@ int GAMEPLAY() {
 			}
 			break;
 		}
-		case 1: //BASE PIECES ROTATED LEFT
+		case 1: //ROTATION 1 <------------------------------------------------------------------------
 		{
 			if (uInput == 'q') {
 				switch (randpiece) {
-				case 1: //TeeWee
+				case 1: //TeeWee |
 				{
 					if (pos2x <= 18 && bgGrid[pos2x + 1][pos2y] == '#') {
-						bgGrid[pos4x][pos4y] = '#';
-						pos4x++;
-						pos4y--;
+						bgGrid[pos1x][pos1y] = '#';
+						pos1x++;
+						pos1y--;
+						pos2y++;
+						pos3y++;
 						rotation = 2;
 					}
 					break;
 				}
-				case 2: //Orange Ricky 
+				case 2: //Orange Ricky |
 				{
 					if (pos2x <= 18 && bgGrid[pos2x - 1][pos2y] == '#' && bgGrid[pos3x + 1][pos3y] == '#' && bgGrid[pos3x - 1][pos3y] == '#') {
 						bgGrid[pos1x][pos1y] = '#';
-						pos1y -= 2;
+						pos1x++;
 						bgGrid[pos2x][pos2y] = '#';
-						pos2x--;
-						pos2y++;
+						pos2x++;
+						pos3x++;
 						bgGrid[pos4x][pos4y] = '#';
-						pos4x++;
 						pos4y--;
 						rotation = 2;
 					}
 					break;
 				}
-				case 3: //Blue Ricky
+				case 3: //Blue Ricky |
 				{
 					if (pos2x <= 18 && bgGrid[pos3x - 1][pos3y] == '#' && bgGrid[pos3x + 1][pos3y] == '#' && bgGrid[pos4x - 1][pos4y] == '#') {
-						bgGrid[pos1x][pos1y] = '#';
-						pos1y++;
-						bgGrid[pos2x][pos2y] = '#';
-						pos2y++;
+						pos1x++;
+						pos2x++;
 						bgGrid[pos3x][pos3y] = '#';
-						pos3x++;
-						pos3y--;
-						bgGrid[pos4x][pos4y] = '#';
-						pos4x++;
+						pos3y++;
 						pos4y--;
 						rotation = 2;
 					}
 					break;
 				}
-				case 4: //Hero
+				case 4: //Hero |
 				{
 					if (pos2x <= 17 && bgGrid[pos2x - 1][pos2y] == '#' && bgGrid[pos2x + 1][pos2y] == '#' && bgGrid[pos2x - 2][pos2y] == '#') {
 						bgGrid[pos1x][pos1y] = '#';
@@ -1038,19 +1100,19 @@ int GAMEPLAY() {
 					}
 					break;
 				}
-				case 5: //Cleveland Z
+				case 5: //Cleveland Z |
 				{
 					if (pos3x <= 19 && bgGrid[pos1x - 1][pos1y] == '#') {
-						pos1x--;
-						pos2y--;
-						pos3x--;
+						pos1x++;
+						pos2y++;
+						pos3x++;
 						bgGrid[pos4x][pos4y] = '#';
-						pos4y--;
+						pos4y++;
 						rotation = 2;
 					}
 					break;
 				}
-				case 6: //Rhode Island Z
+				case 6: //Rhode Island Z |
 				{
 					if (pos3x <= 19 && bgGrid[pos2x - 1][pos2y] == '#') {
 						pos1x--;
@@ -1069,12 +1131,107 @@ int GAMEPLAY() {
 
 				}
 			}
+			else if (uInput == 'e') {
+				switch (randpiece) {
+				case 1: //TeeWee
+				{
+					if (pos2x <= 18 && bgGrid[pos3x][pos3y + 1] == '#') {
+						bgGrid[pos4x][pos4y] = '#';
+						pos4x--;
+						pos4y++;
+						rotation = 0;
+					}
+					break;
+				}
+				case 2: //Orange Ricky 
+				{
+					if (pos2x <= 18 && bgGrid[pos2x - 1][pos2y] == '#' && bgGrid[pos3x + 1][pos3y] == '#' && bgGrid[pos3x - 1][pos3y] == '#') {
+						bgGrid[pos1x][pos1y] = '#';
+						pos1y += 2;
+						bgGrid[pos2x][pos2y] = '#';
+						pos2x++;
+						pos2y--;
+						bgGrid[pos4x][pos4y] = '#';
+						pos4x--;
+						pos4y++;
+						rotation = 0;
+					}
+					break;
+				}
+				case 3: //Blue Ricky
+				{
+					if (pos2x <= 18 && bgGrid[pos3x - 1][pos3y] == '#' && bgGrid[pos3x + 1][pos3y] == '#' && bgGrid[pos4x - 1][pos4y] == '#') {
+						bgGrid[pos1x][pos1y] = '#';
+						pos1y -= 2;
+						bgGrid[pos2x][pos2y] = '#';
+						pos2x++;
+						pos2y--;
+						bgGrid[pos4x][pos4y] = '#';
+						pos4x--;
+						pos4y++;
+						rotation = 0;
+					}
+					break;
+				}
+				case 4: //Hero
+				{
+					if (pos2x <= 17 && bgGrid[pos3x - 1][pos3y] == '#' && bgGrid[pos3x + 1][pos3y] == '#' && bgGrid[pos3x - 2][pos3y] == '#') {
+						bgGrid[pos1x][pos1y] = '#';
+						pos1x++;
+						pos1y--;
+						bgGrid[pos3x][pos3y] = '#';
+						pos3x--;
+						pos3y++;
+						bgGrid[pos4x][pos4y] = '#';
+						pos4x -= 2;
+						pos4y += 2;
+						rotation = 0;
+					}
+					break;
+				}
+				case 5: //Cleveland Z
+				{
+					if (pos3x <= 19 && bgGrid[pos4x - 2][pos4y] == '#' && bgGrid[pos4x - 1][pos4y] == '#') {
+						bgGrid[pos1x][pos1y] = '#';
+						pos1x++;
+						pos1y -= 2;
+						pos2x++;
+						pos2y--;
+						pos3x++;
+						pos3y--;
+						bgGrid[pos4x][pos4y] = '#';
+						pos4y++;
+						rotation = 0;
+					}
+					break;
+				}
+				case 6: //Rhode Island Z
+				{
+					if (pos3x <= 19 && bgGrid[pos3x - 2][pos3y] == '#' && bgGrid[pos3x - 1][pos3y] == '#') {
+						pos1x++;
+						bgGrid[pos2x][pos2y] = '#';
+						pos1y += 2;
+						pos2y += 2;
+						bgGrid[pos3x][pos3y] = '#';
+						pos3x++;
+						pos3y--;
+						rotation = 0;
+					}
+					break;
+				}
+				case 7: //Smashboy
+				{
+					break;
+				}
+
+				}
+			}
 
 			else if (uInput == 's') {
 				switch (randpiece) {
 				case 1: //TeeWee 2 3 4
 				{
-					if (bgGrid[pos2x + 1][pos2y] == '#' && bgGrid[pos3x + 1][pos3y] == '#' && bgGrid[pos4x + 1][pos4y] == '#') {
+					if (bgGrid[pos1x + 1][pos1y] == '#' && bgGrid[pos3x + 1][pos3y] == '#' && bgGrid[pos4x + 1][pos4y] == '#') {
 						bgGrid[pos1x][pos1y] = '#';
 						pos1x++;
 						bgGrid[pos2x][pos2y] = '#';
@@ -1085,7 +1242,7 @@ int GAMEPLAY() {
 						pos4x++;
 						break;
 					}
-					else if (bgGrid[pos2x + 1][pos2y] == char(254)) {
+					else if (bgGrid[pos1x + 1][pos1y] == char(254)) {
 						clearlines();
 						randPiece();
 						break;
@@ -1184,7 +1341,7 @@ int GAMEPLAY() {
 					}
 					break;
 				}
-				case 5: //Cleveland Z 3 4
+				case 5: //Cleveland Z 3 4 |
 				{
 					if (bgGrid[pos1x + 1][pos1y] == '#' && bgGrid[pos3x + 1][pos3y] == '#' && bgGrid[pos4x + 1][pos4y] == '#') {
 						bgGrid[pos1x][pos1y] = '#';
@@ -1313,13 +1470,13 @@ int GAMEPLAY() {
 				}
 				case 3: //Blue Ricky 1 2
 				{
-					if (bgGrid[pos1x][pos1y - 1] == char(254)) {
+					if (bgGrid[pos3x][pos3y - 1] == char(254)) {
 						break;
 					}
-					else if (bgGrid[pos2x][pos2y - 1] == char(254)) {
+					else if (bgGrid[pos4x][pos4y - 1] == char(254)) {
 						break;
 					}
-					else if (bgGrid[pos1x][pos1y - 1] == '#' && bgGrid[pos2x][pos2y - 1] == '#') {
+					else if (bgGrid[pos3x][pos3y - 1] == '#' && bgGrid[pos4x][pos4y - 1] == '#') {
 						bgGrid[pos1x][pos1y] = '#';
 						pos1y--;
 						bgGrid[pos2x][pos2y] = '#';
@@ -1558,7 +1715,11 @@ int GAMEPLAY() {
 			{
 				isgaming = false;
 			}
+			break;
+			case 2:
+			{
 
+			}
 		}
 
 
