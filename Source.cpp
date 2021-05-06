@@ -54,7 +54,7 @@ void drawScreen() {
 }
 
 void clearlines() {
-	
+
 	for (int i = 19; i >= 0; i--) {
 		counter = 0;
 		for (int j = 9; j >= 0; j--) {
@@ -72,14 +72,6 @@ void clearlines() {
 			}
 			Sleep(200);
 			drawScreen();
-			for (int l = row; l >= 0; l--) {
-				for (int m = 0; m <= 9; m++) {
-					if (bgGrid[l][m] == char(254)) {
-						bgGrid[l][m] = '#';
-						bgGrid[l + 1][m] = char(254);
-					}
-				}
-			}
 		}
 		if (counter == 20) {
 			for (int i = 19; i >= 0; i--) {
@@ -98,14 +90,6 @@ void clearlines() {
 					}
 					Sleep(200);
 					drawScreen();
-					for (int l = row; l >= 0; l--) {
-						for (int m = 0; m <= 9; m++) {
-							if (bgGrid[l][m] == char(254)) {
-								bgGrid[l][m] = '#';
-								bgGrid[l + 1][m] = char(254);
-							}
-						}
-					}
 				}
 				score += 40;
 			}
@@ -127,14 +111,6 @@ void clearlines() {
 					}
 					Sleep(200);
 					drawScreen();
-					for (int l = row; l >= 0; l--) {
-						for (int m = 0; m <= 9; m++) {
-							if (bgGrid[l][m] == char(254)) {
-								bgGrid[l][m] = '#';
-								bgGrid[l + 1][m] = char(254);
-							}
-						}
-					}
 				}
 				score += 80;
 			}
@@ -156,14 +132,6 @@ void clearlines() {
 					}
 					Sleep(200);
 					drawScreen();
-					for (int l = row; l >= 0; l--) {
-						for (int m = 0; m <= 9; m++) {
-							if (bgGrid[l][m] == char(254)) {
-								bgGrid[l][m] = '#';
-								bgGrid[l + 1][m] = char(254);
-							}
-						}
-					}
 				}
 				score += 180;
 			}
@@ -185,12 +153,12 @@ void clearlines() {
 					}
 					Sleep(200);
 					drawScreen();
-					for (int l = row; l >= 0; l--) {
-						for (int m = 0; m <= 9; m++) {
-							if (bgGrid[l][m] == char(254)) {
-								bgGrid[l][m] = '#';
-								bgGrid[l + 1][m] = char(254);
-							}
+				}
+				for (int l = row; l >= 0; l--) {
+					for (int m = 0; m <= 9; m++) {
+						if (bgGrid[l][m] == char(254)) {
+							bgGrid[l][m] = '#';
+							bgGrid[l + 1][m] = char(254);
 						}
 					}
 				}
@@ -202,7 +170,7 @@ void clearlines() {
 
 void randPiece() {
 	rotation = 0;
-	randpiece = 4;//(rand() % 6) + 1;
+	randpiece = 4;// (rand() % 6) + 1;
 	//start piece upon random choice
 	switch (randpiece) {
 	case 1:
@@ -1716,10 +1684,10 @@ int GAMEPLAY() {
 				isgaming = false;
 			}
 			break;
-			case 2:
-			{
+		case 2:
+		{
 
-			}
+		}
 		}
 
 
