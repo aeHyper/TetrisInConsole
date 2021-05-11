@@ -55,6 +55,8 @@ void drawScreen() {
 
 void clearlines() {
 
+	
+
 	for (int i = 19; i >= 0; i--) {
 		counter = 0;
 		for (int j = 9; j >= 0; j--) {
@@ -65,12 +67,16 @@ void clearlines() {
 		}
 
 		if (counter == 10) {
-			for (int k = 0; k <= 9; k++)
+			for (int k = 0; k <= 10; k++)
 			{
 				bgGrid[row][k] = '#';
 				counter++;
 			}
 			Sleep(200);
+			pos1x = 21;
+			pos2x = 21;
+			pos3x = 21;
+			pos4x = 21;
 			drawScreen();
 		}
 		if (counter == 20) {
@@ -89,6 +95,10 @@ void clearlines() {
 						counter++;
 					}
 					Sleep(200);
+					pos1x = 21;
+					pos2x = 21;
+					pos3x = 21;
+					pos4x = 21;
 					drawScreen();
 				}
 				score += 40;
@@ -110,6 +120,10 @@ void clearlines() {
 						counter++;
 					}
 					Sleep(200);
+					pos1x = 21;
+					pos2x = 21;
+					pos3x = 21;
+					pos4x = 21;
 					drawScreen();
 				}
 				score += 80;
@@ -131,6 +145,10 @@ void clearlines() {
 						counter++;
 					}
 					Sleep(200);
+					pos1x = 21;
+					pos2x = 21;
+					pos3x = 21;
+					pos4x = 21;
 					drawScreen();
 				}
 				score += 180;
@@ -152,6 +170,10 @@ void clearlines() {
 						counter++;
 					}
 					Sleep(200);
+					pos1x = 21;
+					pos2x = 21;
+					pos3x = 21;
+					pos4x = 21;
 					drawScreen();
 				}
 				for (int l = row; l >= 0; l--) {
@@ -170,7 +192,7 @@ void clearlines() {
 
 void randPiece() {
 	rotation = 0;
-	randpiece = 4;// (rand() % 6) + 1;
+	randpiece = 4;//(rand() % 6) + 1;
 	//start piece upon random choice
 	switch (randpiece) {
 	case 1:
@@ -521,18 +543,18 @@ int GAMEPLAY() {
 						break;
 					}
 					else if (bgGrid[pos2x + 1][pos2y] == char(254)) {
-						clearlines();
 						randPiece();
+						clearlines();
 						break;
 					}
 					else if (bgGrid[pos3x + 1][pos3y] == char(254)) {
-						clearlines();
 						randPiece();
+						clearlines();
 						break;
 					}
 					else if (bgGrid[pos4x + 1][pos4y] == char(254)) {
-						clearlines();
 						randPiece();
+						clearlines();
 						break;
 					}
 
@@ -613,23 +635,23 @@ int GAMEPLAY() {
 						break;
 					}
 					else if (bgGrid[pos1x + 1][pos1y] == char(254)) {
-						clearlines();
 						randPiece();
+						clearlines();
 						break;
 					}
 					else if (bgGrid[pos2x + 1][pos2y] == char(254)) {
-						clearlines();
 						randPiece();
+						clearlines();
 						break;
 					}
 					else if (bgGrid[pos3x + 1][pos3y] == char(254)) {
-						clearlines();
 						randPiece();
+						clearlines();
 						break;
 					}
 					else if (bgGrid[pos4x + 1][pos4y] == char(254)) {
-						clearlines();
 						randPiece();
+						clearlines();
 						break;
 					}
 					break;
@@ -1010,7 +1032,7 @@ int GAMEPLAY() {
 			}
 			break;
 		}
-		case 1: //ROTATION 1 <------------------------------------------------------------------------
+		case 1: //ROTATION 1 <-------------------------------------------------------------------------------------------
 		{
 			if (uInput == 'q') {
 				switch (randpiece) {
@@ -1211,18 +1233,18 @@ int GAMEPLAY() {
 						break;
 					}
 					else if (bgGrid[pos1x + 1][pos1y] == char(254)) {
-						clearlines();
 						randPiece();
+						clearlines();
 						break;
 					}
 					else if (bgGrid[pos3x + 1][pos3y] == char(254)) {
-						clearlines();
 						randPiece();
+						clearlines();
 						break;
 					}
 					else if (bgGrid[pos4x + 1][pos4y] == char(254)) {
-						clearlines();
 						randPiece();
+						clearlines();
 						break;
 					}
 
