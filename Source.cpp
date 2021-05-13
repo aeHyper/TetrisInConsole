@@ -55,7 +55,7 @@ void drawScreen() {
 
 void clearlines() {
 
-	
+
 
 	for (int i = 19; i >= 0; i--) {
 		counter = 0;
@@ -192,7 +192,7 @@ void clearlines() {
 
 void randPiece() {
 	rotation = 0;
-	randpiece = 4;//(rand() % 6) + 1;
+	randpiece = 2;// (rand() % 6) + 1;
 	//start piece upon random choice
 	switch (randpiece) {
 	case 1:
@@ -324,6 +324,7 @@ void randPiece() {
 	}
 
 }
+
 int GAMEPLAY() {
 
 	randPiece();
@@ -1252,7 +1253,7 @@ int GAMEPLAY() {
 				}
 				case 2: //Orange Ricky 2 3 4
 				{
-					if (bgGrid[pos2x + 1][pos2y] == '#' && bgGrid[pos3x + 1][pos3y] == '#' && bgGrid[pos4x + 1][pos4y] == '#') {
+					if (bgGrid[pos1x + 1][pos1y] == '#' && bgGrid[pos4x + 1][pos4y] == '#') {
 						bgGrid[pos1x][pos1y] = '#';
 						pos1x++;
 						bgGrid[pos2x][pos2y] = '#';
@@ -1263,12 +1264,7 @@ int GAMEPLAY() {
 						pos4x++;
 						break;
 					}
-					else if (bgGrid[pos2x + 1][pos2y] == char(254)) {
-						clearlines();
-						randPiece();
-						break;
-					}
-					else if (bgGrid[pos3x + 1][pos3y] == char(254)) {
+					else if (bgGrid[pos1x + 1][pos1y] == char(254)) {
 						clearlines();
 						randPiece();
 						break;
@@ -1283,7 +1279,7 @@ int GAMEPLAY() {
 				}
 				case 3: //Blue Ricky 2 3 4
 				{
-					if (bgGrid[pos2x + 1][pos2y] == '#' && bgGrid[pos3x + 1][pos3y] == '#' && bgGrid[pos4x + 1][pos4y] == '#') {
+					if (bgGrid[pos3x + 1][pos3y] == '#' && bgGrid[pos4x + 1][pos4y] == '#') {
 						bgGrid[pos1x][pos1y] = '#';
 						pos1x++;
 						bgGrid[pos2x][pos2y] = '#';
