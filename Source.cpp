@@ -192,7 +192,7 @@ void clearlines() {
 
 void randPiece() {
 	rotation = 0;
-	randpiece = 2;// (rand() % 6) + 1;
+	randpiece = (rand() % 6) + 1;
 	//start piece upon random choice
 	switch (randpiece) {
 	case 1:
@@ -335,7 +335,7 @@ int GAMEPLAY() {
 		cin >> uInput;
 
 		switch (rotation) {
-		case 0: { //BASE PIECES
+		case 0: { //BASE PIECES <---------------------------------------------------------------------------------------------
 			if (uInput == 'q') {
 				switch (randpiece) {
 				case 1: //TeeWee
@@ -432,9 +432,7 @@ int GAMEPLAY() {
 				switch (randpiece) {
 				case 1: //TeeWee
 				{
-					if (pos2x <= 18 && bgGrid[pos2x + 1][pos2y] == '#') {
-						pos1x++;
-						pos1y--;
+					if (pos3x <= 18 && bgGrid[pos3x + 1][pos3y] == '#') {
 						bgGrid[pos2x][pos2y] = '#';
 						pos2y++;
 						pos3y++;
@@ -1095,8 +1093,10 @@ int GAMEPLAY() {
 				{
 					if (pos3x <= 19 && bgGrid[pos1x - 1][pos1y] == '#') {
 						pos1x++;
+						pos1y--;
 						pos2y++;
 						pos3x++;
+						pos3y--;
 						bgGrid[pos4x][pos4y] = '#';
 						pos4y++;
 						rotation = 2;
@@ -1124,7 +1124,7 @@ int GAMEPLAY() {
 			}
 			else if (uInput == 'e') {
 				switch (randpiece) {
-				case 1: //TeeWee
+				case 1: //TeeWee |
 				{
 					if (pos2x <= 18 && bgGrid[pos3x][pos3y + 1] == '#') {
 						bgGrid[pos4x][pos4y] = '#';
@@ -1439,10 +1439,10 @@ int GAMEPLAY() {
 					if (bgGrid[pos1x][pos1y - 1] == char(254)) {
 						break;
 					}
-					else if (bgGrid[pos2x][pos2y - 1] == char(254)) {
+					else if (bgGrid[pos4x][pos4y - 1] == char(254)) {
 						break;
 					}
-					else if (bgGrid[pos1x][pos1y - 1] == '#' && bgGrid[pos2x][pos2y - 1] == '#') {
+					else if (bgGrid[pos1x][pos1y - 1] == '#' && bgGrid[pos4x][pos4y - 1] == '#') {
 						bgGrid[pos1x][pos1y] = '#';
 						pos1y--;
 						bgGrid[pos2x][pos2y] = '#';
