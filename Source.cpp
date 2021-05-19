@@ -192,7 +192,7 @@ void clearlines() {
 
 void randPiece() {
 	rotation = 0;
-	randpiece = (rand() % 6) + 1;
+	randpiece = (rand() % 7) + 1;
 	//start piece upon random choice
 	switch (randpiece) {
 	case 1:
@@ -340,7 +340,7 @@ int GAMEPLAY() {
 				switch (randpiece) {
 				case 1: //TeeWee
 				{
-					if (pos2x <= 18 && bgGrid[pos3x + 1][pos3y] == '#') {
+					if (pos3x <= 18 && bgGrid[pos3x + 1][pos3y] == '#') {
 						bgGrid[pos4x][pos4y] = '#';
 						pos4x++;
 						pos4y--;
@@ -1037,7 +1037,7 @@ int GAMEPLAY() {
 				switch (randpiece) {
 				case 1: //TeeWee |
 				{
-					if (pos2x <= 18 && bgGrid[pos2x + 1][pos2y] == '#') {
+					if (pos3x <= 18 && bgGrid[pos3x][pos3y + 1] == '#') {
 						bgGrid[pos1x][pos1y] = '#';
 						pos1x++;
 						pos1y--;
@@ -1079,9 +1079,8 @@ int GAMEPLAY() {
 						bgGrid[pos1x][pos1y] = '#';
 						pos1x--;
 						pos1y++;
-						bgGrid[pos3x][pos3y] = '#';
-						pos3x++;
-						pos3y--;
+						bgGrid[pos2x][pos2y] = '#';
+						pos2y++;
 						bgGrid[pos4x][pos4y] = '#';
 						pos4x += 2;
 						pos4y -= 2;
@@ -1222,7 +1221,7 @@ int GAMEPLAY() {
 				switch (randpiece) {
 				case 1: //TeeWee 2 3 4
 				{
-					if (bgGrid[pos1x + 1][pos1y] == '#' && bgGrid[pos3x + 1][pos3y] == '#' && bgGrid[pos4x + 1][pos4y] == '#') {
+					if (bgGrid[pos2x + 1][pos2y] == '#' && bgGrid[pos4x + 1][pos4y] == '#') {
 						bgGrid[pos1x][pos1y] = '#';
 						pos1x++;
 						bgGrid[pos2x][pos2y] = '#';
@@ -1357,7 +1356,7 @@ int GAMEPLAY() {
 				}
 				case 6: //Rhode Island Z 3 4
 				{
-					if (bgGrid[pos2x + 1][pos2y] == '#' && bgGrid[pos3x + 1][pos3y] == '#' && bgGrid[pos4x + 1][pos4y] == '#') {
+					if (bgGrid[pos2x + 1][pos2y] == '#' && bgGrid[pos4x + 1][pos4y] == '#') {
 						bgGrid[pos1x][pos1y] = '#';
 						pos1x++;
 						bgGrid[pos2x][pos2y] = '#';
@@ -1369,10 +1368,6 @@ int GAMEPLAY() {
 						break;
 					}
 					else if (bgGrid[pos2x + 1][pos2y] == char(254)) {
-						clearlines();
-						randPiece();
-					}
-					else if (bgGrid[pos3x + 1][pos3y] == char(254)) {
 						clearlines();
 						randPiece();
 					}
@@ -1702,12 +1697,678 @@ int GAMEPLAY() {
 				isgaming = false;
 			}
 			break;
-		case 2:
+		case 2: //ROTATION 2 <--------------------------------------------------------------------------------------------------
 		{
+			if (uInput == 'q') {
+				switch (randpiece) {
+				case 1: //TeeWee |
+				{
+					if (pos3x <= 18 && bgGrid[pos3x][pos3y + 1] == '#') {
+						bgGrid[pos1x][pos1y] = '#';
+						pos1x--;
+						pos1y++;
+						rotation = 3;
+					}
+					break;
+				}
+				case 2: //Orange Ricky |
+				{
+					if (pos2x <= 18 && bgGrid[pos2x - 1][pos2y] == '#' && bgGrid[pos3x + 1][pos3y] == '#' && bgGrid[pos3x - 1][pos3y] == '#') {
+						bgGrid[pos1x][pos1y] = '#';
+						pos1x++;
+						bgGrid[pos2x][pos2y] = '#';
+						pos2x++;
+						pos3x++;
+						bgGrid[pos4x][pos4y] = '#';
+						pos4y--;
+						rotation = 2;
+					}
+					break;
+				}
+				case 3: //Blue Ricky |
+				{
+					if (pos2x <= 18 && bgGrid[pos3x - 1][pos3y] == '#' && bgGrid[pos3x + 1][pos3y] == '#' && bgGrid[pos4x - 1][pos4y] == '#') {
+						pos1x++;
+						pos2x++;
+						bgGrid[pos3x][pos3y] = '#';
+						pos3y++;
+						pos4y--;
+						rotation = 2;
+					}
+					break;
+				}
+				case 4: //Hero |
+				{
+					if (pos2x <= 17 && bgGrid[pos2x - 1][pos2y] == '#' && bgGrid[pos2x + 1][pos2y] == '#' && bgGrid[pos2x - 2][pos2y] == '#') {
+						bgGrid[pos1x][pos1y] = '#';
+						pos1x--;
+						pos1y++;
+						bgGrid[pos2x][pos2y] = '#';
+						pos2y++;
+						bgGrid[pos4x][pos4y] = '#';
+						pos4x += 2;
+						pos4y -= 2;
+						rotation = 2;
+					}
+					break;
+				}
+				case 5: //Cleveland Z |
+				{
+					if (pos3x <= 19 && bgGrid[pos1x - 1][pos1y] == '#') {
+						pos1x++;
+						pos1y--;
+						pos2y++;
+						pos3x++;
+						pos3y--;
+						bgGrid[pos4x][pos4y] = '#';
+						pos4y++;
+						rotation = 2;
+					}
+					break;
+				}
+				case 6: //Rhode Island Z |
+				{
+					if (pos3x <= 19 && bgGrid[pos2x - 1][pos2y] == '#') {
+						pos1x--;
+						pos1y++;
+						bgGrid[pos3x][pos3y] = '#';
+						pos3x--;
+						pos3y += 2;
+						rotation = 2;
+					}
+					break;
+				}
+				case 7: //Smashboy
+				{
+					break;
+				}
 
+				}
+			}
+			else if (uInput == 'e') {
+				switch (randpiece) {
+				case 1: //TeeWee |
+				{
+					if (pos2x <= 18 && bgGrid[pos2x - 1][pos2y] == '#') {
+						bgGrid[pos3x][pos3y] = '#';
+						pos1x--;
+						pos1y++;
+						pos2y--;
+						pos3y--;
+						rotation = 1;
+					}
+					break;
+				}
+				case 2: //Orange Ricky 
+				{
+					if (pos2x <= 18 && bgGrid[pos2x - 1][pos2y] == '#' && bgGrid[pos3x + 1][pos3y] == '#' && bgGrid[pos3x - 1][pos3y] == '#') {
+						bgGrid[pos1x][pos1y] = '#';
+						pos1y += 2;
+						bgGrid[pos2x][pos2y] = '#';
+						pos2x++;
+						pos2y--;
+						bgGrid[pos4x][pos4y] = '#';
+						pos4x--;
+						pos4y++;
+						rotation = 0;
+					}
+					break;
+				}
+				case 3: //Blue Ricky
+				{
+					if (pos2x <= 18 && bgGrid[pos3x - 1][pos3y] == '#' && bgGrid[pos3x + 1][pos3y] == '#' && bgGrid[pos4x - 1][pos4y] == '#') {
+						bgGrid[pos1x][pos1y] = '#';
+						pos1y -= 2;
+						bgGrid[pos2x][pos2y] = '#';
+						pos2x++;
+						pos2y--;
+						bgGrid[pos4x][pos4y] = '#';
+						pos4x--;
+						pos4y++;
+						rotation = 0;
+					}
+					break;
+				}
+				case 4: //Hero
+				{
+					if (pos2x <= 17 && bgGrid[pos3x - 1][pos3y] == '#' && bgGrid[pos3x + 1][pos3y] == '#' && bgGrid[pos3x - 2][pos3y] == '#') {
+						bgGrid[pos1x][pos1y] = '#';
+						pos1x++;
+						pos1y--;
+						bgGrid[pos3x][pos3y] = '#';
+						pos3x--;
+						pos3y++;
+						bgGrid[pos4x][pos4y] = '#';
+						pos4x -= 2;
+						pos4y += 2;
+						rotation = 0;
+					}
+					break;
+				}
+				case 5: //Cleveland Z
+				{
+					if (pos3x <= 19 && bgGrid[pos4x - 2][pos4y] == '#' && bgGrid[pos4x - 1][pos4y] == '#') {
+						bgGrid[pos1x][pos1y] = '#';
+						pos1x++;
+						pos1y -= 2;
+						pos2x++;
+						pos2y--;
+						pos3x++;
+						pos3y--;
+						bgGrid[pos4x][pos4y] = '#';
+						pos4y++;
+						rotation = 0;
+					}
+					break;
+				}
+				case 6: //Rhode Island Z
+				{
+					if (pos3x <= 19 && bgGrid[pos3x - 2][pos3y] == '#' && bgGrid[pos3x - 1][pos3y] == '#') {
+						pos1x++;
+						bgGrid[pos2x][pos2y] = '#';
+						pos1y += 2;
+						pos2y += 2;
+						bgGrid[pos3x][pos3y] = '#';
+						pos3x++;
+						pos3y--;
+						rotation = 0;
+					}
+					break;
+				}
+				case 7: //Smashboy
+				{
+					break;
+				}
+
+				}
+			}
+
+			else if (uInput == 's') {
+				switch (randpiece) {
+				case 1: //TeeWee 2 3 4 |
+				{
+					if (bgGrid[pos1x + 1][pos3y] == '#' && bgGrid[pos4x + 1][pos4y] == '#') {
+						bgGrid[pos1x][pos1y] = '#';
+						pos1x++;
+						bgGrid[pos2x][pos2y] = '#';
+						pos2x++;
+						bgGrid[pos3x][pos3y] = '#';
+						pos3x++;
+						bgGrid[pos4x][pos4y] = '#';
+						pos4x++;
+						break;
+					}
+					else if (bgGrid[pos1x + 1][pos1y] == char(254)) {
+						randPiece();
+						clearlines();
+						break;
+					}
+					else if (bgGrid[pos3x + 1][pos3y] == char(254)) {
+						randPiece();
+						clearlines();
+						break;
+					}
+					else if (bgGrid[pos4x + 1][pos4y] == char(254)) {
+						randPiece();
+						clearlines();
+						break;
+					}
+
+					break;
+				}
+				case 2: //Orange Ricky 2 3 4
+				{
+					if (bgGrid[pos1x + 1][pos1y] == '#' && bgGrid[pos4x + 1][pos4y] == '#') {
+						bgGrid[pos1x][pos1y] = '#';
+						pos1x++;
+						bgGrid[pos2x][pos2y] = '#';
+						pos2x++;
+						bgGrid[pos3x][pos3y] = '#';
+						pos3x++;
+						bgGrid[pos4x][pos4y] = '#';
+						pos4x++;
+						break;
+					}
+					else if (bgGrid[pos1x + 1][pos1y] == char(254)) {
+						clearlines();
+						randPiece();
+						break;
+					}
+					else if (bgGrid[pos4x + 1][pos4y] == char(254)) {
+						clearlines();
+						randPiece();
+						break;
+					}
+
+					break;
+				}
+				case 3: //Blue Ricky 2 3 4
+				{
+					if (bgGrid[pos3x + 1][pos3y] == '#' && bgGrid[pos4x + 1][pos4y] == '#') {
+						bgGrid[pos1x][pos1y] = '#';
+						pos1x++;
+						bgGrid[pos2x][pos2y] = '#';
+						pos2x++;
+						bgGrid[pos3x][pos3y] = '#';
+						pos3x++;
+						bgGrid[pos4x][pos4y] = '#';
+						pos4x++;
+						break;
+					}
+					else if (bgGrid[pos2x + 1][pos2y] == char(254)) {
+						clearlines();
+						randPiece();
+						break;
+					}
+					else if (bgGrid[pos3x + 1][pos3y] == char(254)) {
+						clearlines();
+						randPiece();
+						break;
+					}
+					else if (bgGrid[pos4x + 1][pos4y] == char(254)) {
+						clearlines();
+						randPiece();
+						break;
+					}
+					break;
+				}
+				case 4: //Hero 1 2 3 4
+				{
+					if (bgGrid[pos4x + 1][pos4y] == '#') {
+						bgGrid[pos1x][pos1y] = '#';
+						pos1x++;
+						bgGrid[pos2x][pos2y] = '#';
+						pos2x++;
+						bgGrid[pos3x][pos3y] = '#';
+						pos3x++;
+						bgGrid[pos4x][pos4y] = '#';
+						pos4x++;
+						break;
+					}
+					else if (bgGrid[pos4x + 1][pos4y] == char(254)) {
+						clearlines();
+						randPiece();
+						break;
+					}
+					break;
+				}
+				case 5: //Cleveland Z 3 4 |
+				{
+					if (bgGrid[pos1x + 1][pos1y] == '#' && bgGrid[pos3x + 1][pos3y] == '#' && bgGrid[pos4x + 1][pos4y] == '#') {
+						bgGrid[pos1x][pos1y] = '#';
+						pos1x++;
+						bgGrid[pos2x][pos2y] = '#';
+						pos2x++;
+						bgGrid[pos3x][pos3y] = '#';
+						pos3x++;
+						bgGrid[pos4x][pos4y] = '#';
+						pos4x++;
+						break;
+					}
+					else if (bgGrid[pos1x + 1][pos1y] == char(254)) {
+						clearlines();
+						randPiece();
+					}
+					else if (bgGrid[pos3x + 1][pos3y] == char(254)) {
+						clearlines();
+						randPiece();
+					}
+					else if (bgGrid[pos4x + 1][pos4y] == char(254)) {
+						clearlines();
+						randPiece();
+					}
+
+					break;
+				}
+				case 6: //Rhode Island Z 3 4
+				{
+					if (bgGrid[pos2x + 1][pos2y] == '#' && bgGrid[pos3x + 1][pos3y] == '#' && bgGrid[pos4x + 1][pos4y] == '#') {
+						bgGrid[pos1x][pos1y] = '#';
+						pos1x++;
+						bgGrid[pos2x][pos2y] = '#';
+						pos2x++;
+						bgGrid[pos3x][pos3y] = '#';
+						pos3x++;
+						bgGrid[pos4x][pos4y] = '#';
+						pos4x++;
+						break;
+					}
+					else if (bgGrid[pos2x + 1][pos2y] == char(254)) {
+						clearlines();
+						randPiece();
+					}
+					else if (bgGrid[pos3x + 1][pos3y] == char(254)) {
+						clearlines();
+						randPiece();
+					}
+					else if (bgGrid[pos4x + 1][pos4y] == char(254)) {
+						clearlines();
+						randPiece();
+					}
+					break;
+				}
+				case 7: //Smashboy 3 4
+				{
+					if (bgGrid[pos3x + 1][pos3y] == '#' && bgGrid[pos4x + 1][pos4y] == '#') {
+						bgGrid[pos1x][pos1y] = '#';
+						pos1x++;
+						bgGrid[pos2x][pos2y] = '#';
+						pos2x++;
+						bgGrid[pos3x][pos3y] = '#';
+						pos3x++;
+						bgGrid[pos4x][pos4y] = '#';
+						pos4x++;
+						break;
+					}
+					else if (bgGrid[pos3x + 1][pos3y] == char(254)) {
+						clearlines();
+						randPiece();
+						break;
+					}
+					else if (bgGrid[pos4x + 1][pos4y] == char(254)) {
+						clearlines();
+						randPiece();
+						break;
+					}
+					break;
+				}
+				}
+
+			}
+
+			else if (uInput == 'a') {
+
+				switch (randpiece) {
+				case 1: //TeeWee 1 2
+				{
+					if (bgGrid[pos1x][pos1y - 1] == char(254)) {
+						break;
+					}
+					else if (bgGrid[pos4x][pos4y - 1] == char(254)) {
+						break;
+					}
+					else if (bgGrid[pos1x][pos1y - 1] == '#' && bgGrid[pos4x][pos4y - 1] == '#') {
+						bgGrid[pos1x][pos1y] = '#';
+						pos1y--;
+						bgGrid[pos2x][pos2y] = '#';
+						pos2y--;
+						bgGrid[pos3x][pos3y] = '#';
+						pos3y--;
+						bgGrid[pos4x][pos4y] = '#';
+						pos4y--;
+					}
+					break;
+				}
+				case 2: //Orange Ricky 1 2
+				{
+					if (bgGrid[pos1x][pos1y - 1] == char(254)) {
+						break;
+					}
+					else if (bgGrid[pos4x][pos4y - 1] == char(254)) {
+						break;
+					}
+					else if (bgGrid[pos1x][pos1y - 1] == '#' && bgGrid[pos4x][pos4y - 1] == '#') {
+						bgGrid[pos1x][pos1y] = '#';
+						pos1y--;
+						bgGrid[pos2x][pos2y] = '#';
+						pos2y--;
+						bgGrid[pos3x][pos3y] = '#';
+						pos3y--;
+						bgGrid[pos4x][pos4y] = '#';
+						pos4y--;
+					}
+					break;
+				}
+				case 3: //Blue Ricky 1 2
+				{
+					if (bgGrid[pos3x][pos3y - 1] == char(254)) {
+						break;
+					}
+					else if (bgGrid[pos4x][pos4y - 1] == char(254)) {
+						break;
+					}
+					else if (bgGrid[pos3x][pos3y - 1] == '#' && bgGrid[pos4x][pos4y - 1] == '#') {
+						bgGrid[pos1x][pos1y] = '#';
+						pos1y--;
+						bgGrid[pos2x][pos2y] = '#';
+						pos2y--;
+						bgGrid[pos3x][pos3y] = '#';
+						pos3y--;
+						bgGrid[pos4x][pos4y] = '#';
+						pos4y--;
+					}
+					break;
+				}
+				case 4: //Hero 1
+				{
+					if (bgGrid[pos1x][pos1y - 1] == char(254)) {
+						break;
+					}
+					else if (bgGrid[pos1x][pos1y - 1] == '#') {
+						bgGrid[pos1x][pos1y] = '#';
+						pos1y--;
+						bgGrid[pos2x][pos2y] = '#';
+						pos2y--;
+						bgGrid[pos3x][pos3y] = '#';
+						pos3y--;
+						bgGrid[pos4x][pos4y] = '#';
+						pos4y--;
+					}
+					break;
+				}
+				case 5: //Cleveland Z 1 3
+				{
+					if (bgGrid[pos1x][pos1y - 1] == char(254)) {
+						break;
+					}
+					else if (bgGrid[pos3x][pos3y - 1] == char(254)) {
+						break;
+					}
+					else if (bgGrid[pos1x][pos1y - 1] == '#' && bgGrid[pos3x][pos3y - 1] == '#') {
+						bgGrid[pos1x][pos1y] = '#';
+						pos1y--;
+						bgGrid[pos2x][pos2y] = '#';
+						pos2y--;
+						bgGrid[pos3x][pos3y] = '#';
+						pos3y--;
+						bgGrid[pos4x][pos4y] = '#';
+						pos4y--;
+					}
+					break;
+				}
+				case 6: //Rhode Island Z 1 3
+				{
+					if (bgGrid[pos1x][pos1y - 1] == char(254)) {
+						break;
+					}
+					else if (bgGrid[pos3x][pos3y - 1] == char(254)) {
+						break;
+					}
+					else if (bgGrid[pos1x][pos1y - 1] == '#' && bgGrid[pos3x][pos3y - 1] == '#') {
+						bgGrid[pos1x][pos1y] = '#';
+						pos1y--;
+						bgGrid[pos2x][pos2y] = '#';
+						pos2y--;
+						bgGrid[pos3x][pos3y] = '#';
+						pos3y--;
+						bgGrid[pos4x][pos4y] = '#';
+						pos4y--;
+					}
+					break;
+				}
+				case 7: //Smashboy 1 3
+				{
+					if (bgGrid[pos1x][pos1y - 1] == char(254)) {
+						break;
+					}
+					else if (bgGrid[pos3x][pos3y - 1] == char(254)) {
+						break;
+					}
+					else if (bgGrid[pos1x][pos1y - 1] == '#' && bgGrid[pos3x][pos3y - 1] == '#') {
+						bgGrid[pos1x][pos1y] = '#';
+						pos1y--;
+						bgGrid[pos2x][pos2y] = '#';
+						pos2y--;
+						bgGrid[pos3x][pos3y] = '#';
+						pos3y--;
+						bgGrid[pos4x][pos4y] = '#';
+						pos4y--;
+					}
+					break;
+				}
+				}
+			}
+
+			else if (uInput == 'd')
+			{
+				switch (randpiece) {
+				case 1: //TeeWee 1 4
+				{
+					if (bgGrid[pos3x][pos3y + 1] == char(254)) {
+						break;
+					}
+					else if (bgGrid[pos4x][pos4y + 1] == char(254)) {
+						break;
+					}
+					else if (bgGrid[pos3x][pos3y + 1] == '#' && bgGrid[pos4x][pos4y + 1] == '#') {
+						bgGrid[pos1x][pos1y] = '#';
+						pos1y++;
+						bgGrid[pos2x][pos2y] = '#';
+						pos2y++;
+						bgGrid[pos3x][pos3y] = '#';
+						pos3y++;
+						bgGrid[pos4x][pos4y] = '#';
+						pos4y++;
+					}
+					break;
+				}
+				case 2: //Orange Ricky 1 4
+				{
+					if (bgGrid[pos1x][pos1y + 1] == char(254)) {
+						break;
+					}
+					else if (bgGrid[pos4x][pos4y + 1] == char(254)) {
+						break;
+					}
+					else if (bgGrid[pos1x][pos1y + 1] == '#' && bgGrid[pos4x][pos4y + 1] == '#') {
+						bgGrid[pos1x][pos1y] = '#';
+						pos1y++;
+						bgGrid[pos2x][pos2y] = '#';
+						pos2y++;
+						bgGrid[pos3x][pos3y] = '#';
+						pos3y++;
+						bgGrid[pos4x][pos4y] = '#';
+						pos4y++;
+					}
+					break;
+				}
+				case 3: //Blue Ricky 1 4
+				{
+					if (bgGrid[pos1x][pos1y + 1] == char(254)) {
+						break;
+					}
+					else if (bgGrid[pos4x][pos4y + 1] == char(254)) {
+						break;
+					}
+					else if (bgGrid[pos1x][pos1y + 1] == '#' && bgGrid[pos4x][pos4y + 1] == '#') {
+						bgGrid[pos1x][pos1y] = '#';
+						pos1y++;
+						bgGrid[pos2x][pos2y] = '#';
+						pos2y++;
+						bgGrid[pos3x][pos3y] = '#';
+						pos3y++;
+						bgGrid[pos4x][pos4y] = '#';
+						pos4y++;
+					}
+					break;
+				}
+				case 4: //Hero 4
+				{
+					if (bgGrid[pos4x][pos4y + 1] == char(254)) {
+						break;
+					}
+					else if (bgGrid[pos4x][pos4y + 1] == '#') {
+						bgGrid[pos1x][pos1y] = '#';
+						pos1y++;
+						bgGrid[pos2x][pos2y] = '#';
+						pos2y++;
+						bgGrid[pos3x][pos3y] = '#';
+						pos3y++;
+						bgGrid[pos4x][pos4y] = '#';
+						pos4y++;
+					}
+					break;
+				}
+				case 5: //Cleveland Z 2 4
+				{
+					if (bgGrid[pos2x][pos2y + 1] == char(254)) {
+						break;
+					}
+					else if (bgGrid[pos4x][pos4y + 1] == char(254)) {
+						break;
+					}
+					else if (bgGrid[pos2x][pos2y + 1] == '#' && bgGrid[pos4x][pos4y + 1] == '#') {
+						bgGrid[pos1x][pos1y] = '#';
+						pos1y++;
+						bgGrid[pos2x][pos2y] = '#';
+						pos2y++;
+						bgGrid[pos3x][pos3y] = '#';
+						pos3y++;
+						bgGrid[pos4x][pos4y] = '#';
+						pos4y++;
+					}
+					break;
+				}
+				case 6: //Rhode Island Z 2 4
+				{
+					if (bgGrid[pos2x][pos2y + 1] == char(254)) {
+						break;
+					}
+					else if (bgGrid[pos4x][pos4y + 1] == char(254)) {
+						break;
+					}
+					else if (bgGrid[pos2x][pos2y + 1] == '#' && bgGrid[pos4x][pos4y + 1] == '#') {
+						bgGrid[pos1x][pos1y] = '#';
+						pos1y++;
+						bgGrid[pos2x][pos2y] = '#';
+						pos2y++;
+						bgGrid[pos3x][pos3y] = '#';
+						pos3y++;
+						bgGrid[pos4x][pos4y] = '#';
+						pos4y++;
+					}
+					break;
+				}
+				case 7: //Smashboy 2 4
+				{
+					if (bgGrid[pos2x][pos2y + 1] == char(254)) {
+						break;
+					}
+					else if (bgGrid[pos4x][pos4y + 1] == char(254)) {
+						break;
+					}
+					else if (bgGrid[pos2x][pos2y + 1] == '#' && bgGrid[pos4x][pos4y + 1] == '#') {
+						bgGrid[pos1x][pos1y] = '#';
+						pos1y++;
+						bgGrid[pos2x][pos2y] = '#';
+						pos2y++;
+						bgGrid[pos3x][pos3y] = '#';
+						pos3y++;
+						bgGrid[pos4x][pos4y] = '#';
+						pos4y++;
+					}
+					break;
+				}
+				}
+			}
+
+			else if (uInput == 'p')
+			{
+				isgaming = false;
+			}
 		}
 		}
-
+		case 3:
 
 
 		}
